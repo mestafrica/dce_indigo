@@ -1,26 +1,24 @@
-# README
+# RESTful API calls for a deal a day  of E-commerce platforms #
 
-### Installing our project DCE_INDIGO
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
+#### Add Item to Product list ####
 
-* Configuration
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+#### Get Product list ####
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+#### Set Discounted products ####
 
-* ...
+#### Calculate Discount ####
+
+
+
+#### Get discounted product ####
+
+
+#### Display js snippet code for the product discounted ####
