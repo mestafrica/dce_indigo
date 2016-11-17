@@ -1,0 +1,70 @@
+#rails g Product company:string product_table
+
+#run rails db:migrate
+
+#rails g controller Products index new create destroy
+
+#rails g uploader product_table
+
+
+Paste in model produt.rb
+mount_uploader :product_table, AttachmentUploader # Tells rails to use this uploader for this model.
+   validates :product_table, presence: true # Make sure the owner's name is present.
+
+
+
+
+Paste in routes
+#   resources :products, only: [:index, :new, :create, :destroy]
+ #  root "products#index"
+
+
+Paste in product controller
+def index
+  	@products = Product.all
+  end
+
+  def new
+  	@products = Product.new
+  end
+
+  def create
+  	 @porduct = Product.new(product_params)
+      
+      if @product.save
+         redirect_to products_path, notice: "The Product table of #{@product.company} has been uploaded."
+      else
+         render "new"
+      end
+  end
+
+  def destroy
+  	  @product = Product.find(params[:id])
+      @product.destroy
+      redirect_to products_path, notice:  "The Product table of #{@product.company} has been deleted."
+  end
+
+  private
+  def product_params
+      params.require(:product).permit(:company, :product_table) 
+  end
+end
+
+
+go to assets/stylesheets/product.scss change the name to products.css.scss and paste this
+@import "bootstrap";
+
+
+
+accepted
+You can use the read method on the uploader object. If we have a model called MyModel which has a field called attachment which was added using CarrierWave's mount_uploader method, we can do the following:
+
+obj = MyModel.first
+contents = obj.attachment.read
+
+
+<div><br>
+		<% obj = Product.first %>
+		<% contents = obj.product_table.read %>	
+		<%= contents %>
+</div><br>

@@ -1,0 +1,21 @@
+<% if !@products.errors.empty? %>
+   <div class = "alert alert-error">
+      
+      <ul>
+         <% @products.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+      </ul>
+      
+   </div>
+<% end %>
+
+<div class = "well">
+   <%= form_for @products, html: { multipart: true } do |f| %>
+      <%= f.label :company %>
+      <%= f.text_field :company %>
+      <%= f.label :product_table %>
+      <%= f.file_field :product_table %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+   <% end %>
+</div>

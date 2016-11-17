@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ApiDev</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+  </head>
+
+  <body>
+
+          <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top rag" role="navigation">
+        <div class="container ">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+
+                </button>
+                <% if Product.last %>
+                  <%= link_to "Hi #{Product.last.company} Welcome to your dashboard", root_url, class: "navbar-brand" %>
+                <% else %>
+                  <%= link_to "Please Upload Your Product table", root_url, class: "navbar-brand" %>
+                <% end %>
+               <div>
+                
+               </div>
+              
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav><br> <br>
+
+  	<div class = "container" style = "padding-top:20px;">
+    
+    	 <%= yield.force_encoding(Encoding::UTF_8) %>
+
+      <footer>© 2017 MEST</footer>
+    </div>	
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </body>
+</html>

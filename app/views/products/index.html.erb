@@ -1,0 +1,50 @@
+
+
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
+
+<br />
+	
+<%= link_to "New Upload", new_product_path, class: "btn btn-primary" %>
+<br />
+<br />
+
+<table class = "table table-bordered table-striped">
+   <thead>
+      <tr>
+         <th>Name</th>
+         <th>Download Link</th>
+         <th> </th>
+      </tr>
+   </thead>
+   
+   <tbody>
+      <% @products.each do |product| %>
+         
+         <tr>
+            <td><%= product.company %></td>
+            <td><%= link_to "Download Resume", product.product_table_url %></td>
+            <td><%= button_to "Delete",  product, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{product.company}?" %></td>
+         </tr> 
+      <% end %>
+   </tbody>
+</table>
+
+
+<div><br>
+   <% if Product.last %>
+      <h3> <%= Product.last.company %> (Content) </h3>
+         <% obj = Product.last %>
+         <% contents = obj.product_table.read %> 
+         <% contents.split("\n").each do |prod| %>
+         <% id, product, price = prod.split(",")[0], prod.split(",")[1], prod.split(",")[2]%>
+         <input type="checkbox"> <%= "#{product}"%> &nbsp; <input type="textbox"> <br>
+         <% end %>
+   <% else %>
+      <h3>No file to show yet</h3>
+   <% end %>      
+</div><br>
+
