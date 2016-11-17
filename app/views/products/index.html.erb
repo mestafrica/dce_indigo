@@ -41,7 +41,7 @@
          <% contents = obj.product_table.read %> 
          <% contents.split("\n").each do |prod| %>
          <% id, product, price = prod.split(",")[0], prod.split(",")[1], prod.split(",")[2]%>
-         <input type="checkbox"> <%= "#{product}"%> &nbsp; <input type="textbox"> <br>
+         <input type="checkbox"> <%= "#{product} #{price}"%> &nbsp; <br>
          <% end %>
    <% else %>
       <h3>No file to show yet</h3>
