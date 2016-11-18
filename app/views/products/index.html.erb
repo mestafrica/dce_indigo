@@ -8,15 +8,13 @@
 
 <br />
 	
-<%= link_to "New Upload", new_product_path, class: "btn btn-primary" %>
-<br />
-<br />
+
 
 <table class = "table table-bordered table-striped">
    <thead>
       <tr>
-         <th>Name</th>
-         <th>Download Link</th>
+         <th>Company</th>
+         <th>Product Table</th>
          <th> </th>
       </tr>
    </thead>
@@ -26,22 +24,40 @@
          
          <tr>
             <td><%= product.company %></td>
-            <td><%= link_to "Download Resume", product.product_table_url %></td>
+            <td><%= link_to "View / Download Table", product.product_table_url %></td>
             <td><%= button_to "Delete",  product, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{product.company}?" %></td>
          </tr> 
       <% end %>
    </tbody>
 </table>
 
+<%= link_to "Upload New", new_product_path, class: "btn btn-primary" %>
+<br />
+<br />
 
 <div><br>
    <% if Product.last %>
       <h3> <%= Product.last.company %> (Content) </h3>
          <% obj = Product.last %>
          <% contents = obj.product_table.read %> 
-         <% contents.split("\n").each do |prod| %>
+         <table class = "table table-bordered table-striped">
+            
+         <% contents.split("\n")[1..-1].each do |prod| %>
          <% id, product, price = prod.split(",")[0], prod.split(",")[1], prod.split(",")[2]%>
-         <input type="checkbox"> <%= "#{product} #{price}"%> &nbsp; <br>
+         <table class = "table table-bordered table-striped">
+         <thead>
+               <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td><input type="checkbox">&nbsp; &nbsp; &nbsp; &nbsp;<%= "#{product}"%></td>
+                  <td><%= "GHC #{price}"%></td>
+               </tr>            
+            </tbody>
+         </table><br>   
          <% end %>
    <% else %>
       <h3>No file to show yet</h3>
